@@ -1,0 +1,79 @@
+ * {
+        box-sizing: border-box;
+    }
+
+    html, body
+    {
+        height: 100%;
+        width: 100%;
+        margin: 0px;
+        padding: 0px;
+        font-size: 20px;
+        overflow: hidden;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -o-user-select: none;
+        user-select: none; 
+    }
+
+    #divContainer 
+    {
+        position: relative;
+        width: 100%;
+        height: 100%;               
+        border: none;
+        overflow: hidden;
+    }
+
+    .eCell 
+    {
+        position: absolute;
+        //border: 1px #000 solid;
+        -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+        -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+        box-sizing: border-box;
+    }
+
+[contenteditable]:focus {
+    outline: 0px solid transparent;
+}
+
+.js_blank_wrapper { 
+    width: 100%; 
+    height:100%;
+    position: relative; 
+    overflow: hidden; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 5px 0px;
+}
+
+.js_blank_border {
+    border: #222 solid 1px;
+    overflow: hidden;
+    position: relative;
+    height: 95%;
+    padding: 10px;
+    margin: 10px;
+}
+
+.js_blank_sentense {
+
+}
+
+.js_blank_underline_wrapper {
+    padding-left: 5px;
+}
+
+.js_blank_underline {
+    position: absolute; z-index:-1
+}
+
+.js_blank_input {
+    text-indent:100px; 
+    border:1px transparent solid;
+    word-wrap: break-word;
+    padding-right: 50px;
+}

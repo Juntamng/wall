@@ -1,0 +1,176 @@
+[debug] [2017-12-02T22:15:01.847Z] ----------------------------------------------------------------------
+[debug] [2017-12-02T22:15:01.850Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\shek.ng.CMLMEDIASOFT\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase init functions
+[debug] [2017-12-02T22:15:01.850Z] CLI Version:   3.15.4
+[debug] [2017-12-02T22:15:01.850Z] Platform:      win32
+[debug] [2017-12-02T22:15:01.850Z] Node Version:  v6.9.5
+[debug] [2017-12-02T22:15:01.851Z] Time:          Sat Dec 02 2017 14:15:01 GMT-0800 (Pacific Standard Time)
+[debug] [2017-12-02T22:15:01.851Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-12-02T22:15:01.892Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase"]
+[debug] [2017-12-02T22:15:01.893Z] > authorizing via signed-in user
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\shek.ng.CMLMEDIASOFT\Desktop\my\juntamng\wall
+
+Before we get started, keep in mind:
+
+  * You are initializing in an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2017-12-02T22:15:15.692Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2017-12-02T22:15:15.693Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token { refresh_token: '1/gmWCg51VreG_yeNVBhsD5_qyDJBOrlCg15FFqHsodYgrhuyYVelxz94BgxCiKHpJ',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Sat Dec 02 2017 14:15:15 GMT-0800 (Pacific Standard Time)
+[debug] [2017-12-02T22:15:15.845Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-02T22:15:15.854Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects  
+ Sat Dec 02 2017 14:15:15 GMT-0800 (Pacific Standard Time)
+[debug] [2017-12-02T22:15:16.696Z] <<< HTTP RESPONSE 200
+[info] i  .firebaserc already has a default project, skipping
+[info] 
+=== Functions Setup
+[info] 
+[info] A functions directory will be created in your project with a Node.js
+[info] package pre-configured. Functions can be deployed with firebase deploy.
+[info] 
+[debug] [2017-12-02T22:15:16.703Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-12-02T22:15:16.704Z] > authorizing via signed-in user
+[debug] [2017-12-02T22:15:16.705Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2017-12-02T22:15:16.705Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token { refresh_token: '1/gmWCg51VreG_yeNVBhsD5_qyDJBOrlCg15FFqHsodYgrhuyYVelxz94BgxCiKHpJ',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Sat Dec 02 2017 14:15:16 GMT-0800 (Pacific Standard Time)
+[debug] [2017-12-02T22:15:16.783Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-02T22:15:16.793Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/wall-9af4f  
+ Sat Dec 02 2017 14:15:16 GMT-0800 (Pacific Standard Time)
+[debug] [2017-12-02T22:15:17.146Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-02T22:15:17.147Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/wall-9af4f/tokens  
+ Sat Dec 02 2017 14:15:17 GMT-0800 (Pacific Standard Time)
+[debug] [2017-12-02T22:15:17.691Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-02T22:15:17.693Z] >>> HTTP REQUEST PATCH https://servicemanagement.googleapis.com/v1/services/cloudfunctions.googleapis.com/projectSettings/wall-9af4f?updateMask=usageSettings { usageSettings: { consumerEnableStatus: 'ENABLED' } } 
+ Sat Dec 02 2017 14:15:17 GMT-0800 (Pacific Standard Time)
+[debug] [2017-12-02T22:15:17.694Z] >>> HTTP REQUEST PATCH https://servicemanagement.googleapis.com/v1/services/runtimeconfig.googleapis.com/projectSettings/wall-9af4f?updateMask=usageSettings { usageSettings: { consumerEnableStatus: 'ENABLED' } } 
+ Sat Dec 02 2017 14:15:17 GMT-0800 (Pacific Standard Time)
+[info] +  Wrote functions/package.json
+[info] +  Wrote functions/index.js
+[debug] [2017-12-02T22:15:18.543Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-02T22:15:18.707Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-02T22:19:22.439Z] ----------------------------------------------------------------------
+[debug] [2017-12-02T22:19:22.442Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\shek.ng.CMLMEDIASOFT\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase init functions
+[debug] [2017-12-02T22:19:22.443Z] CLI Version:   3.15.4
+[debug] [2017-12-02T22:19:22.443Z] Platform:      win32
+[debug] [2017-12-02T22:19:22.443Z] Node Version:  v6.9.5
+[debug] [2017-12-02T22:19:22.443Z] Time:          Sat Dec 02 2017 14:19:22 GMT-0800 (Pacific Standard Time)
+[debug] [2017-12-02T22:19:22.443Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-12-02T22:19:22.476Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase"]
+[debug] [2017-12-02T22:19:22.477Z] > authorizing via signed-in user
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\shek.ng.CMLMEDIASOFT\Desktop\my\juntamng\wall
+
+Before we get started, keep in mind:
+
+  * You are initializing in an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2017-12-02T22:19:24.698Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2017-12-02T22:19:24.698Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token { refresh_token: '1/gmWCg51VreG_yeNVBhsD5_qyDJBOrlCg15FFqHsodYgrhuyYVelxz94BgxCiKHpJ',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Sat Dec 02 2017 14:19:24 GMT-0800 (Pacific Standard Time)
+[debug] [2017-12-02T22:19:24.834Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-02T22:19:24.844Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects  
+ Sat Dec 02 2017 14:19:24 GMT-0800 (Pacific Standard Time)
+[debug] [2017-12-02T22:19:25.533Z] <<< HTTP RESPONSE 200
+[info] i  .firebaserc already has a default project, skipping
+[info] 
+=== Functions Setup
+[info] 
+[info] A functions directory will be created in your project with a Node.js
+[info] package pre-configured. Functions can be deployed with firebase deploy.
+[info] 
+[debug] [2017-12-02T22:19:25.538Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-12-02T22:19:25.538Z] > authorizing via signed-in user
+[debug] [2017-12-02T22:19:25.539Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2017-12-02T22:19:25.539Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token { refresh_token: '1/gmWCg51VreG_yeNVBhsD5_qyDJBOrlCg15FFqHsodYgrhuyYVelxz94BgxCiKHpJ',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Sat Dec 02 2017 14:19:25 GMT-0800 (Pacific Standard Time)
+[debug] [2017-12-02T22:19:25.618Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-02T22:19:25.626Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/wall-9af4f  
+ Sat Dec 02 2017 14:19:25 GMT-0800 (Pacific Standard Time)
+[debug] [2017-12-02T22:19:26.002Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-02T22:19:26.003Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/wall-9af4f/tokens  
+ Sat Dec 02 2017 14:19:26 GMT-0800 (Pacific Standard Time)
+[debug] [2017-12-02T22:19:26.430Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-02T22:19:26.434Z] >>> HTTP REQUEST PATCH https://servicemanagement.googleapis.com/v1/services/cloudfunctions.googleapis.com/projectSettings/wall-9af4f?updateMask=usageSettings { usageSettings: { consumerEnableStatus: 'ENABLED' } } 
+ Sat Dec 02 2017 14:19:26 GMT-0800 (Pacific Standard Time)
+[debug] [2017-12-02T22:19:26.435Z] >>> HTTP REQUEST PATCH https://servicemanagement.googleapis.com/v1/services/runtimeconfig.googleapis.com/projectSettings/wall-9af4f?updateMask=usageSettings { usageSettings: { consumerEnableStatus: 'ENABLED' } } 
+ Sat Dec 02 2017 14:19:26 GMT-0800 (Pacific Standard Time)
+[debug] [2017-12-02T22:19:27.280Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-02T22:19:27.408Z] <<< HTTP RESPONSE 200
+[info] +  Wrote functions/package.json
+[info] +  Wrote functions/index.js
+[debug] [2017-12-02T23:03:16.760Z] ----------------------------------------------------------------------
+[debug] [2017-12-02T23:03:16.763Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\shek.ng.CMLMEDIASOFT\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve
+[debug] [2017-12-02T23:03:16.763Z] CLI Version:   3.15.4
+[debug] [2017-12-02T23:03:16.763Z] Platform:      win32
+[debug] [2017-12-02T23:03:16.764Z] Node Version:  v6.9.5
+[debug] [2017-12-02T23:03:16.764Z] Time:          Sat Dec 02 2017 15:03:16 GMT-0800 (Pacific Standard Time)
+[debug] [2017-12-02T23:03:16.764Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-12-02T23:03:16.801Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-12-02T23:03:16.801Z] > authorizing via signed-in user
+[debug] [2017-12-02T23:03:16.803Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/wall-9af4f  
+ Sat Dec 02 2017 15:03:16 GMT-0800 (Pacific Standard Time)
+[debug] [2017-12-02T23:03:17.409Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-02T23:03:17.411Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/wall-9af4f/tokens  
+ Sat Dec 02 2017 15:03:17 GMT-0800 (Pacific Standard Time)
+[debug] [2017-12-02T23:03:17.873Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'C:\Users\shek.ng.CMLMEDIASOFT\Desktop\my\juntamng\wall'...
+[info] 
+[debug] [2017-12-02T23:03:17.878Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/wall-9af4f  
+ Sat Dec 02 2017 15:03:17 GMT-0800 (Pacific Standard Time)
+[debug] [2017-12-02T23:03:18.254Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-02T23:03:18.254Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/422339336508/clients/_:getWebAppConfig  
+ Sat Dec 02 2017 15:03:18 GMT-0800 (Pacific Standard Time)
+[debug] [2017-12-02T23:03:18.514Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] +  hosting: Local server: http://localhost:5000
+

@@ -1,3 +1,5 @@
+import $ from "jquery";
+
 /*
 The MIT License (MIT)
 
@@ -628,4 +630,4 @@ SOFTWARE.
 		});
 	};
 
-})( jQuery, window, document );
+})( $, window, document );
