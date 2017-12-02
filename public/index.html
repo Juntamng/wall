@@ -1,0 +1,210 @@
+<html>
+<head>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        html, body
+        {
+            height: 100%;
+            width: 100%;
+            margin: 0px;
+            padding: 0px;
+            font-size: 20px;
+            overflow: hidden;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -o-user-select: none;
+            user-select: none; 
+        }
+        
+        #divContainer 
+        {
+            position: relative;
+            width: 100%;
+            height: 100%;               
+            border: none;
+            overflow: hidden;
+        }
+        
+        .eCell 
+        {
+            position: absolute;
+            //border: 1px #000 solid;
+            -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+            -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+            box-sizing: border-box;
+        }
+        
+    [contenteditable]:focus {
+        outline: 0px solid transparent;
+    }
+    
+    .js_blank_wrapper { 
+        width: 100%; 
+        height:100%;
+        position: relative; 
+        overflow: hidden; 
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 5px 0px;
+    }
+    
+    .js_blank_border {
+        border: #222 solid 1px;
+        overflow: hidden;
+        position: relative;
+        height: 95%;
+        padding: 10px;
+        margin: 10px;
+    }
+    
+    .js_blank_sentense {
+
+    }
+    
+    .js_blank_underline_wrapper {
+        padding-left: 5px;
+    }
+    
+    .js_blank_underline {
+        position: absolute; z-index:-1
+    }
+    
+    .js_blank_input {
+        text-indent:100px; 
+        border:1px transparent solid;
+        word-wrap: break-word;
+        padding-right: 50px;
+    }
+    </style>
+</head>
+<body>
+    <div id="divContainer">
+        <div class="wrapper">                                
+        </div>        
+    </div>   
+    
+<script src="/__/firebase/4.6.2/firebase.js"></script>
+<script src="/__/firebase/init.js"></script>
+
+<script>
+    var db = firebase.database();
+    var ref = db.ref("cells");
+    
+    ref.on('child_changed', function(data){
+        var oVal = data.val();
+        $("#" + data.key).find(".js_blank_input").text(oVal.txt);
+    });
+    
+</script>
+
+<script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="https://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+<script src="js/jquery.eco-scroll.js"></script>  
+<script src="js/underscore.js"></script>   
+<script>            
+    $(function()
+    {   
+        var $activeCell = null;
+        
+        $("#divContainer").ecoScroll(
+        {
+            itemWidth: 400,
+            itemHeight: 150,
+            rangeX : [-100, 100],
+            rangeY : [-100, 100],
+            axis : "yx",
+            snap : false,                     
+            momentum : true,
+            momentumSpeed : 10,
+            onStart: function(oParam)
+            {
+                if (oParam.target.getAttribute("contenteditable") === "true") {
+                    return false;
+                }
+                else {
+                    console.log("start");
+                    return true;
+                }
+            },
+            onShow: function(oParam) 
+            {
+                if (oParam.bNew) {
+                    //var $div = $("<div class='desc'></div>");
+                    
+                    var starCountRef = firebase.database().ref('cells/c' + oParam.x + "_" + oParam.y + '/txt');
+                    starCountRef.on('value', function(snapshot) {
+                        
+                        oParam.$e.html('<div class="js_blank_wrapper">' +
+                            '<div class="js_blank_border">' +
+                                '<span class="js_blank_sentence">Before I die I want to</span>' +
+                                '<span class="js_blank_underline_wrapper">' +
+                                '<span class="js_blank_underline">_______________</span>' +
+                                '<span class="js_blank_input" contenteditable="true"></span>' +
+                                '</span>' +
+                            '</div>' +
+                        '</div>');
+                        
+                        if (snapshot.val() === null) {
+                            //$div.text(oParam.x + ":" + oParam.y);
+                            //oParam.$e.text(oParam.x + ":" + oParam.y);
+                        }
+                        else {
+                            //$div.text(snapshot.val());
+                            oParam.$e.find(".js_blank_input").text(snapshot.val());
+                        }
+                        //$div.appendTo(oParam.$e);
+                    });
+                    //oParam.$e.text(oParam.x + ":" + oParam.y);
+                }
+                oParam.$e.css({opacity: 1});    
+            },
+            onHide: function(oParam) 
+            {
+                oParam.$e.css({opacity: 0.3});
+                oParam.$e.hide();    
+            },
+            onRemove: function(oParam)
+            {
+                return true;    
+            },
+            onStop: function(oParam)
+            {
+                console.log("stop");
+            },
+            onResize: function(oParam)
+            {
+                console.log("resize");
+            },
+            onClick: function(oParam)
+            {   
+                var $input;
+                console.log("click");
+                
+                if ($activeCell) {
+                    $activeCell.$e.removeClass("active");
+                    var id = $activeCell.$e.prop("id"), sTxt =  $activeCell.$e.find(".js_blank_input").text();
+                    
+                    firebase.database().ref('cells/' + id).set({
+                        txt: sTxt
+                    });
+                }
+            
+                $activeCell = oParam;
+                $input = $activeCell.$e.find(".js_blank_input");
+                $activeCell.$e.addClass("active");
+                $input.keyup(_.debounce(function(){
+                    firebase.database().ref('cells/' + $activeCell.$e.prop("id")).set({
+                        txt: $input.text()
+                    });
+                }, 1000));
+            },           
+        });
+    });
+</script>
+</body>
+</html>

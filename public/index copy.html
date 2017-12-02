@@ -1,0 +1,126 @@
+<html>
+<head>
+    <style>
+        html, body
+        {
+            height: 100%;
+            width: 100%;
+            margin-top:50px;
+
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -o-user-select: none;
+            user-select: none; 
+        }
+        
+        #divContainer 
+        {
+            margin: 10px auto;
+            position: relative;
+            width: 300px; 
+            height: 300px;                
+            border: 5px #000 solid;
+            /* overflow: hidden; */
+            opacity: 0.5
+        }
+        
+        .eCell 
+        {
+            position: absolute;
+            border: 1px #000 solid;
+            -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+            -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="divContainer">
+        <div class="wrapper">                                
+        </div>        
+    </div>   
+
+<script src="/__/firebase/4.6.2/firebase.js"></script>
+<script src="/__/firebase/init.js"></script>
+
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyCsq4dlPTBz_Gi9uCRT0Ql4GyR8xUOhFG4",
+    authDomain: "wall-9af4f.firebaseapp.com",
+    databaseURL: "https://wall-9af4f.firebaseio.com",
+    projectId: "wall-9af4f",
+    storageBucket: "wall-9af4f.appspot.com",
+    messagingSenderId: "422339336508"
+  };
+  firebase.initializeApp(config);
+
+    var db = firebase.database();
+    var ref = db.ref("cells");
+    
+    ref.on('child_changed', function(data){
+        var oVal = data.val();
+        $("#c" + data.key).txt(oVal.txt);
+    });
+    
+</script>
+
+<script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="https://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+<script src="js/jquery.eco-scroll.js"></script>        
+<script>            
+    $(function()
+    {   
+        $("#divContainer").ecoScroll(
+        {
+            itemWidth: 150,
+            itemHeight: 150,
+            rangeX : [-10, 10],
+            rangeY : [-10, 10],
+            axis : "yx",
+            snap : false,                     
+            momentum : true,
+            momentumSpeed : 10,
+            onStart: function(oParam)
+            {
+                return true;
+            },
+            onShow: function(oParam) 
+            {
+                if (oParam.bNew) {
+                    var starCountRef = firebase.database().ref('cells/' + oParam.x + "_" + oParam.y + '/txt');
+                    starCountRef.on('value', function(snapshot) {
+                        oParam.$e.text(oParam.x + ":" + oParam.y + " = " + snapshot.val());
+                    });
+                    //oParam.$e.text(oParam.x + ":" + oParam.y);
+                }
+                oParam.$e.css({opacity: 1});    
+            },
+            onHide: function(oParam) 
+            {
+                oParam.$e.css({opacity: 0.3});
+                oParam.$e.hide();    
+            },
+            onRemove: function(oParam)
+            {
+                return true;    
+            },
+            onStop: function(oParam)
+            {
+                console.log("stop");
+            },
+            onResize: function(oParam)
+            {
+                console.log("resize");
+            },
+            onClick: function(oParam)
+            {
+                console.log("click");
+            },           
+        });
+    });
+</script>
+</body>
+</html>
