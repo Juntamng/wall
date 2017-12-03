@@ -1,11 +1,20 @@
 import $ from "jquery";
 import _ from "underscore";
 import es from "./js/jquery.eco-scroll";
+import bb from "backbone";
+import mn from "backbone.marionette";
 
 $(function()
 {   
+    var a = new bb.Model({name:"mike"});
+    var v = mn.View.extend({
+        template: _.template("<h1><%=name%></h1>")
+    });
+    
+    console.log(new v({model: a}).render().$el.html());
+    
     var $activeCell = null;
-
+    
     $("#divContainer").ecoScroll(
     {
         itemWidth: 400,
