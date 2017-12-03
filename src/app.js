@@ -3,16 +3,19 @@ import _ from "underscore";
 import es from "./js/jquery.eco-scroll";
 import bb from "backbone";
 import mn from "backbone.marionette";
+import fill_in_the_blank_view from "./view/fill_in_the_blank";
 
 $(function()
 {   
-    var a = new bb.Model({name:"mike"});
+    /*
+    var a = new bb.Model({txt:"mike"});
     var v = mn.View.extend({
-        template: _.template("<h1><%=name%></h1>")
+        template: _.template("<h1><%=txt%></h1>")
     });
     
-    console.log(new v({model: a}).render().$el.html());
-    
+    console.log(new fill_in_the_blank_view({model: a}).render().$el.html());
+    */
+
     var $activeCell = null;
     
     $("#divContainer").ecoScroll(
@@ -38,30 +41,15 @@ $(function()
         onShow: function(oParam) 
         {
             if (oParam.bNew) {
-                //var $div = $("<div class='desc'></div>");
-
                 var starCountRef = firebase.database().ref('cells/c' + oParam.x + "_" + oParam.y + '/txt');
                 starCountRef.on('value', function(snapshot) {
-
-                    oParam.$e.html('<div class="js_blank_wrapper">' +
-                        '<div class="js_blank_border">' +
-                            '<span class="js_blank_sentence">Before I die I want to</span>' +
-                            '<span class="js_blank_underline_wrapper">' +
-                            '<span class="js_blank_underline">_______________</span>' +
-                            '<span class="js_blank_input" contenteditable="true"></span>' +
-                            '</span>' +
-                        '</div>' +
-                    '</div>');
-
-                    if (snapshot.val() === null) {
-                        //$div.text(oParam.x + ":" + oParam.y);
-                        //oParam.$e.text(oParam.x + ":" + oParam.y);
-                    }
-                    else {
-                        //$div.text(snapshot.val());
-                        oParam.$e.find(".js_blank_input").text(snapshot.val());
-                    }
-                    //$div.appendTo(oParam.$e);
+                    var oModel = new bb.Model({
+                            txt: snapshot.val()
+                    });
+                    var oView = new fill_in_the_blank_view({model: oModel});
+                    oParam.$e.html(oView.render({
+                        model: oModel
+                    }).el);
                 });
                 //oParam.$e.text(oParam.x + ":" + oParam.y);
             }

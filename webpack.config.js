@@ -40,6 +40,11 @@ const config = {
             loader: 'url-loader',
             options: { limit: 10000 } // Convert images < 10k to base64 strings
         }]
+    },
+    {
+        test: /\.html$/,
+        exclude: /node_modules/,
+        use: {loader: 'html-loader'}
     }
    ]
   }
