@@ -1,0 +1,56 @@
+#divContainer 
+{
+    position: relative;
+    width: 100%;
+    height: 100%;               
+    border: none;
+    overflow: hidden;
+    
+    .eCell 
+    {
+        position: absolute;
+        -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+        -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+        box-sizing: border-box;
+
+        .js_blank_wrapper { 
+            width: 100%; 
+            height:100%;
+            position: relative; 
+            overflow: hidden; 
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 5px 0px;
+            
+            .js_blank_border {
+                border: #222 solid 1px;
+                overflow: hidden;
+                position: relative;
+                height: 95%;
+                padding: 10px;
+                margin: 10px;
+
+                .js_blank_underline_wrapper {
+                    padding-left: 5px;
+        
+                    .js_blank_underline {
+                        position: absolute; 
+                        z-index: -1;
+                    }
+            
+                    .js_blank_input {
+                        padding-left: 3px;
+                        word-wrap: break-word;
+                        padding-right: 100px;
+
+                        &[contenteditable]:focus {
+                            outline: 0px solid transparent;
+                        }
+                    } 
+                }
+            }
+        }
+    }
+}
+

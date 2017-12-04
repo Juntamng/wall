@@ -1,20 +1,31 @@
 import $ from "jquery";
 import _ from "underscore";
 import es from "./js/jquery.eco-scroll";
+import fb from "firebase";
 import bb from "backbone";
+import "./js/backbonefire";
 import mn from "backbone.marionette";
+import "./css/fill_in_the_blank.scss";
 import fill_in_the_blank_view from "./view/fill_in_the_blank";
 
 $(function()
 {   
-    /*
-    var a = new bb.Model({txt:"mike"});
-    var v = mn.View.extend({
-        template: _.template("<h1><%=txt%></h1>")
-    });
-    
-    console.log(new fill_in_the_blank_view({model: a}).render().$el.html());
-    */
+    var RealtimeList = bb.Firebase.Collection.extend({
+        url: 'https://wall-9af4f.firebaseio.com/todos',
+        autoSync: true // this is true by default
+      })
+      // this collection will immediately begin syncing data
+      // no call to fetch is required, and any calls to fetch will be ignored
+      var realtimeList = new RealtimeList();
+      
+      realtimeList.on('sync', function(collection) {
+        console.log('collection is loaded', collection);
+      });
+      
+      realtimeList.add({
+        subject: 'Make more coffee',
+        importance: 2
+      });
 
     var $activeCell = null;
     
@@ -44,9 +55,11 @@ $(function()
                 var starCountRef = firebase.database().ref('cells/c' + oParam.x + "_" + oParam.y + '/txt');
                 starCountRef.on('value', function(snapshot) {
                     var oModel = new bb.Model({
-                            txt: snapshot.val()
+                            q: "Before I die I want to",
+                            a: snapshot.val()
                     });
                     var oView = new fill_in_the_blank_view({model: oModel});
+                    oParam.$e.data("view", oView);
                     oParam.$e.html(oView.render({
                         model: oModel
                     }).el);
@@ -77,10 +90,13 @@ $(function()
             var $input;
             console.log("click");
 
+            /*
             if ($activeCell) {
                 $activeCell.$e.removeClass("active");
-                var id = $activeCell.$e.prop("id"), sTxt =  $activeCell.$e.find(".js_blank_input").text();
-
+                var id = $activeCell.$e.prop("id"), 
+                sTxt = $activeCell.$e.data("view").getA();
+                console.log(sTxt);
+                //find(".js_blank_input").text();
                 firebase.database().ref('cells/' + id).set({
                     txt: sTxt
                 });
@@ -90,10 +106,12 @@ $(function()
             $input = $activeCell.$e.find(".js_blank_input");
             $activeCell.$e.addClass("active");
             $input.keyup(_.debounce(function(){
+                console.log($input.text());
                 firebase.database().ref('cells/' + $activeCell.$e.prop("id")).set({
                     txt: $input.text()
                 });
             }, 1000));
+            */
         },           
     });
 });

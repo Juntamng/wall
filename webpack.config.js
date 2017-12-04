@@ -14,7 +14,8 @@ const config = {
     filename: './js/bundle.js'
   },
   module: {
-    rules: [{
+    rules: [
+    {
       test: /\.js$/,
       include: path.resolve(__dirname, 'src'),
       use: [{
@@ -27,12 +28,18 @@ const config = {
       }]
     },
     {
-        test: /\.scss$/,
-        use: [
-            'style-loader',
-            'css-loader',
-            'sass-loader'
-        ]
+      test: /\.scss$/,
+      use: [{
+          loader: "style-loader"
+      }, {
+          loader: "css-loader", options: {
+              sourceMap: true
+          }
+      }, {
+          loader: "sass-loader", options: {
+              sourceMap: true
+          }
+      }]
     },
     {
         test: /\.(png|jpg)$/,
