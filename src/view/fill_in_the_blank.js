@@ -9,6 +9,22 @@ var FillInTheBlankView = mn.View.extend({
     },
     getA: function() {
         return this.ui.a.html()
+    },
+    onRender: function(){
+        var me = this;
+
+        me.onTrack();
+    },
+    onTrack: function() {
+        var me = this;
+
+        me.oRef = firebase.database().ref('cells/' + me.model("id") + '/txt');
+        me.oRef.on('value', function(snapshot) {
+            me.ui.a.html(snapshot.val());
+        });
+    },
+    offTrack: function() {
+        me.oRef.off();
     }
 });
 

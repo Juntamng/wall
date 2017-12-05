@@ -10,6 +10,7 @@ import fill_in_the_blank_view from "./view/fill_in_the_blank";
 
 $(function()
 {   
+    /*
     var RealtimeList = bb.Firebase.Collection.extend({
         url: 'https://wall-9af4f.firebaseio.com/todos',
         autoSync: true // this is true by default
@@ -26,6 +27,7 @@ $(function()
         subject: 'Make more coffee',
         importance: 2
       });
+    */
 
     var $activeCell = null;
     
@@ -52,9 +54,12 @@ $(function()
         onShow: function(oParam) 
         {
             if (oParam.bNew) {
-                var starCountRef = firebase.database().ref('cells/c' + oParam.x + "_" + oParam.y + '/txt');
-                starCountRef.on('value', function(snapshot) {
+                //var starCountRef = firebase.database().ref('cells/c' + oParam.x + "_" + oParam.y + '/txt');
+                //starCountRef.on('value', function(snapshot) {
                     var oModel = new bb.Model({
+                            x: oParam.x,
+                            y: oParam.y,
+                            id: "c" + oParam.x + "_" + oParam.y,
                             q: "Before I die I want to",
                             a: snapshot.val()
                     });
@@ -63,7 +68,7 @@ $(function()
                     oParam.$e.html(oView.render({
                         model: oModel
                     }).el);
-                });
+                //});
                 //oParam.$e.text(oParam.x + ":" + oParam.y);
             }
             oParam.$e.css({opacity: 1});    
@@ -87,8 +92,8 @@ $(function()
         },
         onClick: function(oParam)
         {   
-            var $input;
-            console.log("click");
+            //var $input;
+            //console.log("click");
 
             /*
             if ($activeCell) {
