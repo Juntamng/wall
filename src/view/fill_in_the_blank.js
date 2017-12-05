@@ -7,18 +7,27 @@ var FillInTheBlankView = mn.View.extend({
     ui: {
         a: ".js_blank_input"
     },
-    getA: function() {
-        return this.ui.a.html()
+    events: {
+        "keyup @ui.a": _.debounce(function(){
+            this.save();
+        }, 1000)
     },
     onRender: function(){
         var me = this;
 
         me.onTrack();
     },
+    save: function() {
+        var me = this;
+
+        firebase.database().ref('cells/' + me.model.get("id")).set({
+            txt: me.ui.a.html()
+        });
+    },
     onTrack: function() {
         var me = this;
 
-        me.oRef = firebase.database().ref('cells/' + me.model("id") + '/txt');
+        me.oRef = firebase.database().ref('cells/' + me.model.get("id") + '/txt');
         me.oRef.on('value', function(snapshot) {
             me.ui.a.html(snapshot.val());
         });
