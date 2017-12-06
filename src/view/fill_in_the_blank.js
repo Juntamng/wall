@@ -15,7 +15,7 @@ var FillInTheBlankView = mn.View.extend({
     onRender: function(){
         var me = this;
 
-        me.onTrack();
+        me.startTrack();
     },
     save: function() {
         var me = this;
@@ -24,7 +24,7 @@ var FillInTheBlankView = mn.View.extend({
             txt: me.ui.a.html()
         });
     },
-    onTrack: function() {
+    startTrack: function() {
         var me = this;
 
         me.oRef = firebase.database().ref('cells/' + me.model.get("id") + '/txt');
@@ -32,7 +32,9 @@ var FillInTheBlankView = mn.View.extend({
             me.ui.a.html(snapshot.val());
         });
     },
-    offTrack: function() {
+    endTrack: function() {
+        var me = this;
+        
         me.oRef.off();
     }
 });
