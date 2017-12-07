@@ -20,14 +20,14 @@ var FillInTheBlankView = mn.View.extend({
     save: function() {
         var me = this;
 
-        firebase.database().ref('cells/' + me.model.get("id")).set({
+        firebase.database().ref('walldata/c0_0/' + me.model.get("id")).set({
             txt: me.ui.a.html()
         });
     },
     startTrack: function() {
         var me = this;
 
-        me.oRef = firebase.database().ref('cells/' + me.model.get("id") + '/txt');
+        me.oRef = firebase.database().ref('walldata/c0_0/' + me.model.get("id") + '/txt');
         me.oRef.on('value', function(snapshot) {
             me.ui.a.html(snapshot.val());
         });
