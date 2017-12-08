@@ -50,8 +50,8 @@ $(function()
                         var me = this;
                         var sId = "c" + oParam.x + "_" + oParam.y;
 
-                        me.oRef = firebase.database().ref('walls/'+ sId+ '/sentence');
-                        me.oRef.once('value', function(snapshot) {
+                        firebase.database().ref('walls/'+ sId+ '/sentence')
+                        .once('value', function(snapshot) {
                             oParam.$e.html(snapshot.val()).data("id", sId);
                         });
                     }
@@ -91,7 +91,24 @@ $(function()
         ui: {
             "container": ".ecoscroll"
         },
+        initialize: function(options) {
+            options.wallId = "";
+        },
+        onRender: function() {
+        },
+        changeId: function(sWallId) {
+            var me = this;
+            this.options.wallId = sWallId;
+
+            firebase.database().ref('walls/'+ sWallId + '/sentence')
+            .once('value', function(snapshot) {
+                me.options.sentence =  snapshot.val();
+                me.ui.container.data("plugin_ecoScroll").initData();
+            });
+        },
         onAttach: function() {
+            var me = this;
+
             this.ui.container.ecoScroll(
             {
                 itemWidth: 400,
@@ -117,8 +134,9 @@ $(function()
                         var oModel = new Bb.Model({
                                 x: oParam.x,
                                 y: oParam.y,
+                                wallId: me.options.wallId,
                                 id: "c" + oParam.x + "_" + oParam.y,
-                                q: "Before I die I want to"
+                                q: me.options.sentence
                         });
                         var oView = new fill_in_the_blank_view({model: oModel});
                         oParam.$e.data("view", oView);
@@ -127,6 +145,10 @@ $(function()
                         }).el);
                     }
                     else {
+                        if (me.options.wallId !== oParam.$e.data("view").model.get("wallId")) {
+
+                            oParam.$e.data("view").update(me.options.wallId, me.options.sentence);
+                        }
                         oParam.$e.data("view").startTrack();
                     }
                     oParam.$e.css({opacity: 1});    
@@ -168,7 +190,8 @@ $(function()
             console.log("home");
         },
         wall: function(id) {
-            myApp.getView().getRegion("list").currentView.ui.container.data("plugin_ecoScroll").init();
+            myApp.getView().getRegion("wall").currentView.changeId(id);
+            //myApp.getView().getRegion("list").currentView.ui.container.data("plugin_ecoScroll").init();
             //myApp.getView()
             //this.mainRegion.show(new AboutView({collection: colUser}));
             console.log(id);
