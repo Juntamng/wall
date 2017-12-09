@@ -14,9 +14,10 @@ var FillInTheBlankView = mn.View.extend({
         }, 1000)
     },
     onRender: function(){
-        var me = this;
-
-        me.startTrack();
+        this.startTrack();
+    },
+    onDestroy: function() {
+        this.endTrack();
     },
     update: function(sWallId, sQ) {
         var me = this;

@@ -195,6 +195,19 @@ SOFTWARE.
         {
             el.removeEventListener(type, this);
         },         
+        destroy: function() {
+            this.unbind(this.startEvent, this.element);	
+            this.unbind(this.resizeEvent, window); 
+
+            var sKey;
+            for (sKey in this.arr)
+            {
+                if (this.arr.hasOwnProperty(sKey))
+                {
+                    this.removeCell({"eventType": "destroy", "$e": this.arr[sKey].$e, "x": this.arr[sKey].x, "y": this.arr[sKey].y});
+                }
+            }
+        },
         wResize: function(e) 
         {
             this.initData();
@@ -466,7 +479,7 @@ SOFTWARE.
                     if (this.arr[sKey].x < this.x1 || this.arr[sKey].x >= this.x2 || this.arr[sKey].y < this.y1 || this.arr[sKey].y >= this.y2)
                     {
                         this.settings.onHide({"$e": this.arr[sKey].$e, "x": this.arr[sKey].x, "y": this.arr[sKey].y});
-                        this.removeCell({"$e": this.arr[sKey].$e, "x": this.arr[sKey].x, "y": this.arr[sKey].y});
+                        this.removeCell({"eventType": "hideCell", "$e": this.arr[sKey].$e, "x": this.arr[sKey].x, "y": this.arr[sKey].y});
                     }
                 }
             }

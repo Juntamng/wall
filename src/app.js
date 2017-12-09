@@ -80,9 +80,6 @@ $(function()
                     Bb.history.navigate('wall/' + oParam.$e.data("id"), {trigger: true});
                 }          
             });
-        },
-        test: function() {
-            alert(1);
         }
     });
 
@@ -95,6 +92,9 @@ $(function()
             options.wallId = "";
         },
         onRender: function() {
+        },
+        onBeforeDestroy: function() {
+            this.ui.container.data("plugin_ecoScroll").destroy();
         },
         changeId: function(sWallId) {
             var me = this;
@@ -161,6 +161,12 @@ $(function()
                 },
                 onRemove: function(oParam)
                 {
+                    if (oParam.eventType === "hideCell") {
+                        ;
+                    }
+                    else if (oParam.eventType === "destroy") {
+                        oParam.$e.data("view").destroy();
+                    }
                     return true;    
                 },
                 onStop: function(oParam)
@@ -192,9 +198,6 @@ $(function()
         wall: function(id) {
             myApp.getView().getRegion("wall").currentView.changeId(id);
             //myApp.getView().getRegion("list").currentView.ui.container.data("plugin_ecoScroll").init();
-            //myApp.getView()
-            //this.mainRegion.show(new AboutView({collection: colUser}));
-            console.log(id);
         }
     });
 
