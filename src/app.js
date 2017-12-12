@@ -4,6 +4,7 @@ import es from "./js/jquery.eco-scroll";
 import fb from "firebase";
 import Bb from "backbone";
 import Mn from "backbone.marionette";
+import "./css/home_wall.scss";
 import "./css/fill_in_the_blank.scss";
 import fill_in_the_blank_view from "./view/fill_in_the_blank";
 import tplMain from './template/main.html';
@@ -25,17 +26,18 @@ $(function()
     });
 
     const ListView = Mn.View.extend({
+        className: "divList homewall",
         template: _.template(tplList),
         ui: {
-            "container": ".ecoscroll"
+            //"container": ".homewall"
         },
         onAttach: function() {
-            this.ui.container.ecoScroll(
+            this.$el.ecoScroll(
             {
                 itemWidth: 400,
                 itemHeight: 150,
-                rangeX : [-100, 100],
-                rangeY : [-100, 100],
+                rangeX : [-5, 5],
+                rangeY : [-2, 2],
                 axis : "yx",
                 snap : false,                     
                 momentum : true,
@@ -52,7 +54,8 @@ $(function()
 
                         firebase.database().ref('walls/'+ sId+ '/sentence')
                         .once('value', function(snapshot) {
-                            oParam.$e.html(snapshot.val()).data("id", sId);
+                            var sValue = (snapshot.val() === null) ? "" : snapshot.val();
+                            oParam.$e.html("<div>" + sValue + "</div>").data("id", sId);
                         });
                     }
             
@@ -84,9 +87,10 @@ $(function()
     });
 
     const WallView = Mn.View.extend({
+        className: "divWall ecoscroll",
         template: _.template(tplWall),
         ui: {
-            "container": ".ecoscroll"
+            //"container": ".ecoscroll"
         },
         initialize: function(options) {
             options.wallId = "";
@@ -94,7 +98,7 @@ $(function()
         onRender: function() {
         },
         onBeforeDestroy: function() {
-            this.ui.container.data("plugin_ecoScroll").destroy();
+            this.$el.data("plugin_ecoScroll").destroy();
         },
         changeId: function(sWallId) {
             var me = this;
@@ -103,13 +107,13 @@ $(function()
             firebase.database().ref('walls/'+ sWallId + '/sentence')
             .once('value', function(snapshot) {
                 me.options.sentence =  snapshot.val();
-                me.ui.container.data("plugin_ecoScroll").initData();
+                me.$el.data("plugin_ecoScroll").initData();
             });
         },
         onAttach: function() {
             var me = this;
 
-            this.ui.container.ecoScroll(
+            this.$el.ecoScroll(
             {
                 itemWidth: 400,
                 itemHeight: 150,
@@ -193,9 +197,11 @@ $(function()
         },
         home: function() {
             //this.mainRegion.show(new MainView({collection: colUser}));
+            myApp.getView().getRegion("list").$el.css({top: "0"});
             console.log("home");
         },
         wall: function(id) {
+            myApp.getView().getRegion("list").$el.css({top: "-100%"});
             myApp.getView().getRegion("wall").currentView.changeId(id);
             //myApp.getView().getRegion("list").currentView.ui.container.data("plugin_ecoScroll").init();
         }
