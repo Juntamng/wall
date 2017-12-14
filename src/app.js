@@ -36,9 +36,8 @@ $(function()
             {
                 itemWidth: 400,
                 itemHeight: 150,
-                rangeX : [-5, 5],
-                rangeY : [-2, 2],
-                axis : "yx",
+                rangeX : [0, 4],
+                axis : "x",
                 snap : false,                     
                 momentum : true,
                 momentumSpeed : 10,
@@ -197,12 +196,16 @@ $(function()
         },
         home: function() {
             //this.mainRegion.show(new MainView({collection: colUser}));
-            myApp.getView().getRegion("list").$el.css({top: "0"});
+            //myApp.getView().getRegion("list").$el.css({top: "0"});
+            myApp.getView().getRegion("wall").$el.hide();
+            $('html, body').animate({ scrollTop: 0 }, 1200);
+            
             console.log("home");
         },
         wall: function(id) {
-            myApp.getView().getRegion("list").$el.css({top: "-100%"});
+            myApp.getView().getRegion("wall").$el.show();
             myApp.getView().getRegion("wall").currentView.changeId(id);
+            $('html, body').animate({ scrollTop: $(document).height() }, 1200);
             //myApp.getView().getRegion("list").currentView.ui.container.data("plugin_ecoScroll").init();
         }
     });

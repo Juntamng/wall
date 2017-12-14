@@ -1,41 +1,36 @@
-[debug] [2017-12-08T02:42:26.425Z] ----------------------------------------------------------------------
-[debug] [2017-12-08T02:42:26.427Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
-[debug] [2017-12-08T02:42:26.427Z] CLI Version:   3.16.0
-[debug] [2017-12-08T02:42:26.427Z] Platform:      darwin
-[debug] [2017-12-08T02:42:26.427Z] Node Version:  v8.9.2
-[debug] [2017-12-08T02:42:26.427Z] Time:          Thu Dec 07 2017 18:42:26 GMT-0800 (PST)
-[debug] [2017-12-08T02:42:26.427Z] ----------------------------------------------------------------------
+[debug] [2017-12-14T05:49:53.624Z] ----------------------------------------------------------------------
+[debug] [2017-12-14T05:49:53.626Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
+[debug] [2017-12-14T05:49:53.626Z] CLI Version:   3.15.4
+[debug] [2017-12-14T05:49:53.626Z] Platform:      darwin
+[debug] [2017-12-14T05:49:53.626Z] Node Version:  v9.0.0
+[debug] [2017-12-14T05:49:53.627Z] Time:          Wed Dec 13 2017 21:49:53 GMT-0800 (PST)
+[debug] [2017-12-14T05:49:53.627Z] ----------------------------------------------------------------------
 [debug] 
-[debug] [2017-12-08T02:42:26.435Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2017-12-08T02:42:26.435Z] > authorizing via signed-in user
-[debug] [2017-12-08T02:42:26.436Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
-[debug] [2017-12-08T02:42:26.436Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
- { refresh_token: '1/RMhGo7MOvLKl8uF3Ye-80BueyCZz8fmHmkXlojMh7MQ',
+[debug] [2017-12-14T05:49:53.640Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-12-14T05:49:53.640Z] > authorizing via signed-in user
+[debug] [2017-12-14T05:49:53.642Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2017-12-14T05:49:53.642Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token { refresh_token: '1/V2pGfVWkufugpMDPvJMUUXgrWZ3CC6XHs2YZhQVEjhZVBiLlIO7gzEDCJNYrkFLY',
   client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
   client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
   grant_type: 'refresh_token',
   scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
- Thu Dec 07 2017 18:42:26 GMT-0800 (PST)
-[debug] [2017-12-08T02:42:26.761Z] <<< HTTP RESPONSE 200
-[debug] [2017-12-08T02:42:26.774Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/wall-9af4f  
-  
- Thu Dec 07 2017 18:42:26 GMT-0800 (PST)
-[debug] [2017-12-08T02:42:27.429Z] <<< HTTP RESPONSE 200
-[debug] [2017-12-08T02:42:27.429Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/wall-9af4f/tokens  
-  
- Thu Dec 07 2017 18:42:27 GMT-0800 (PST)
-[debug] [2017-12-08T02:42:28.041Z] <<< HTTP RESPONSE 200
+ Wed Dec 13 2017 21:49:53 GMT-0800 (PST)
+[debug] [2017-12-14T05:49:54.050Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-14T05:49:54.066Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/wall-9af4f  
+ Wed Dec 13 2017 21:49:54 GMT-0800 (PST)
+[debug] [2017-12-14T05:49:55.771Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-14T05:49:55.773Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/wall-9af4f/tokens  
+ Wed Dec 13 2017 21:49:55 GMT-0800 (PST)
+[debug] [2017-12-14T05:49:56.385Z] <<< HTTP RESPONSE 200
 [info] 
-[info] === Serving from '/Users/camta/Mike/project/wall'...
+[info] === Serving from '/Users/mikeng/Desktop/Development/firebase/wall'...
 [info] 
-[debug] [2017-12-08T02:42:28.042Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/wall-9af4f  
-  
- Thu Dec 07 2017 18:42:28 GMT-0800 (PST)
-[debug] [2017-12-08T02:42:28.758Z] <<< HTTP RESPONSE 200
-[debug] [2017-12-08T02:42:28.759Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/422339336508/clients/_:getWebAppConfig  
-  
- Thu Dec 07 2017 18:42:28 GMT-0800 (PST)
-[debug] [2017-12-08T02:42:29.251Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-14T05:49:56.387Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/wall-9af4f  
+ Wed Dec 13 2017 21:49:56 GMT-0800 (PST)
+[debug] [2017-12-14T05:49:56.809Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-14T05:49:56.810Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/422339336508/clients/_:getWebAppConfig  
+ Wed Dec 13 2017 21:49:56 GMT-0800 (PST)
+[debug] [2017-12-14T05:49:58.337Z] <<< HTTP RESPONSE 200
 [info] i  hosting: Serving hosting files from: public
 [info] ✔  hosting: Local server: http://localhost:5000
 
