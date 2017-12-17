@@ -1,5 +1,6 @@
 import mn from "backbone.marionette";
 import _ from "underscore";
+import "../css/fill_in_the_blank.scss";
 import tpl from '../template/fill_in_the_blank.html';
 
 var FillInTheBlankView = mn.View.extend({
