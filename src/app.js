@@ -26,7 +26,7 @@ $(function()
     });
 
     const ListView = Mn.View.extend({
-        className: "divList homewall",
+        className: "homewall wall",
         template: _.template(tplList),
         ui: {
             //"container": ".homewall"

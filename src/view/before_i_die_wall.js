@@ -1,13 +1,12 @@
 import _ from "underscore";
 import Bb from "backbone";
 import Mn from "backbone.marionette";
-import "../css/wall.scss";
-
+import "../css/before_i_die_wall.scss";
 import tplWall from '../template/wall.html';
 import fill_in_the_blank_view from "./fill_in_the_blank";
 
 const WallView = Mn.View.extend({
-    className: "wall",
+    className: "before_i_die wall",
     template: _.template(tplWall),
     ui: {
         //"container": ".ecoscroll"
@@ -24,8 +23,8 @@ const WallView = Mn.View.extend({
 
         this.$el.ecoScroll(
         {
-            itemWidth: 400,
-            itemHeight: 150,
+            itemWidth: 500,
+            itemHeight: 100,
             rangeX : [-100, 100],
             rangeY : [-100, 100],
             axis : "yx",
