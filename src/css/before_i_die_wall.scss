@@ -1,14 +1,60 @@
+@import url(//fonts.googleapis.com/css?family=Homemade+Apple);
+
 .before_i_die.wall {
     background-color: #000;
+    background: url('http://images.designtrends.com/wp-content/uploads/2015/12/22095633/Chalkboard-Texture.jpg');
 
     .eCell {
         color: #fff;
 
         .js_blank_wrapper { 
-            
+
             .js_blank_border {
                 border: 0px;
+
+                .js_blank_underline_wrapper {
+
+                    .js_blank_underline {
+                        top: 5px;
+                    }
+            
+                    .js_blank_input {
+                        font-family: 'Homemade Apple', cursive;
+                        color: #9ED7D6;
+                    } 
+                }
+            }
+            
+        }
+    }
+}
+
+
+.eCell.beforeidiewall {
+    color: #fff;
+
+    .js_blank_wrapper { 
+
+        .js_blank_border {
+            background-color: #000;
+            background: url('http://images.designtrends.com/wp-content/uploads/2015/12/22095633/Chalkboard-Texture.jpg');
+        }
+
+        .js_blank_border {
+            border: 0px;
+
+            .js_blank_underline_wrapper {
+                .js_blank_underline {
+                    top: 5px;
+                    z-index: 1;
+                }
+        
+                .js_blank_input {
+                    font-family: 'Homemade Apple', cursive;
+                    color: #9ED7D6;
+                } 
             }
         }
+        
     }
 }

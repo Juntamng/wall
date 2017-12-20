@@ -30,8 +30,10 @@
                 height: 95%;
                 padding: 10px;
                 margin: 10px;
+                //z-index: -1;
 
                 .js_blank_underline_wrapper {
+                    position: relative;
                     padding-left: 5px;
         
                     .js_blank_underline {
@@ -43,6 +45,7 @@
                         padding-left: 3px;
                         word-wrap: break-word;
                         padding-right: 100px;
+                        z-index: 0;
 
                         &[contenteditable]:focus {
                             outline: 0px solid transparent;

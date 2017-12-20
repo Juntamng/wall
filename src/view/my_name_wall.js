@@ -1,31 +1,20 @@
 import _ from "underscore";
 import Bb from "backbone";
 import Mn from "backbone.marionette";
-import "../css/wall.scss";
+import "../css/my_name_wall.scss";
 
-import tplWall from '../template/wall.html';
-import fill_in_the_blank_view from "./fill_in_the_blank";
+import fill_in_the_blank_wall from "./fill_in_the_blank_wall";
+import my_name_item from "./my_name_wall_item";
 
-const WallView = Mn.View.extend({
-    className: "wall",
-    template: _.template(tplWall),
-    ui: {
-        //"container": ".ecoscroll"
-    },
-    initialize: function(options) {
-    },
-    onRender: function() {
-    },
-    onBeforeDestroy: function() {
-        this.$el.data("plugin_ecoScroll").destroy();
-    },
+const WallView = fill_in_the_blank_wall.extend({
+    className: "wall my_name",
     onAttach: function() {
         var me = this;
 
         this.$el.ecoScroll(
         {
-            itemWidth: 400,
-            itemHeight: 150,
+            itemWidth: 500,
+            itemHeight: 100,
             rangeX : [-100, 100],
             rangeY : [-100, 100],
             axis : "yx",
@@ -51,7 +40,7 @@ const WallView = Mn.View.extend({
                             id: "c" + oParam.x + "_" + oParam.y,
                             q: me.options.sentence
                     });
-                    var oView = new fill_in_the_blank_view({model: oModel});
+                    var oView = new my_name_item({model: oModel});
                     oParam.$e.data("view", oView);
                     oParam.$e.html(oView.render({
                         model: oModel
@@ -95,7 +84,7 @@ const WallView = Mn.View.extend({
             },
             onClick: function(oParam)
             {   
-            }          
+            }         
         });
     }
 });

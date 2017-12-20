@@ -2,11 +2,13 @@ import _ from "underscore";
 import Bb from "backbone";
 import Mn from "backbone.marionette";
 import "../css/before_i_die_wall.scss";
-import tplWall from '../template/wall.html';
-import fill_in_the_blank_view from "./fill_in_the_blank";
+import tplWall from "../template/wall.html";
 
-const WallView = Mn.View.extend({
-    className: "before_i_die wall",
+import fill_in_the_blank_wall from "./fill_in_the_blank_wall";
+import before_i_die_item from "./before_i_die_wall_item";
+
+const WallView = fill_in_the_blank_wall.extend({
+    className: "wall before_i_die",
     template: _.template(tplWall),
     ui: {
         //"container": ".ecoscroll"
@@ -50,18 +52,20 @@ const WallView = Mn.View.extend({
                             id: "c" + oParam.x + "_" + oParam.y,
                             q: me.options.sentence
                     });
-                    var oView = new fill_in_the_blank_view({model: oModel});
+                    var oView = new before_i_die_item({model: oModel});
                     oParam.$e.data("view", oView);
                     oParam.$e.html(oView.render({
                         model: oModel
                     }).el);
                 }
                 else {
+                    /*
                     if (me.options.wallId !== oParam.$e.data("view").model.get("wallId")) {
 
                         oParam.$e.data("view").update(me.options.wallId, me.options.sentence);
                     }
                     oParam.$e.data("view").startTrack();
+                    */
                 }
                 oParam.$e.css({opacity: 1});    
             },

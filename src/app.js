@@ -5,7 +5,7 @@ import fb from "firebase";
 import Bb from "backbone";
 import Mn from "backbone.marionette";
 
-import "./css/home_wall.scss";
+//import "./css/home_wall.scss";
 import tplMain from './template/main.html';
 import tplList from './template/list.html';
 // walls modules
@@ -51,10 +51,26 @@ $(function()
                         var me = this;
                         var sId = "c" + oParam.x + "_" + oParam.y;
 
-                        firebase.database().ref('walls/'+ sId+ '/sentence')
+                        firebase.database().ref('walls/'+ sId)
                         .once('value', function(snapshot) {
-                            var sValue = (snapshot.val() === null) ? "" : snapshot.val();
-                            oParam.$e.html("<div>" + sValue + "</div>").data("id", sId);
+                            //oParam.$e.html("<div>" + sValue + "</div>").data("id", sId);
+
+                            if (snapshot.val() !== null) {
+                                var oValue = snapshot.val();
+                                var oModel = new Bb.Model({
+                                    x: oParam.x,
+                                    y: oParam.y,
+                                    wallId: sId,
+                                    id: "c" + oParam.x + "_" + oParam.y,
+                                    q: oValue.sentence
+                                });
+                                var oView = new walls[oValue.view + "Item"]({model: oModel});
+                                oParam.$e.data("view", oView);
+                                oParam.$e.html(oView.render({
+                                    model: oModel
+                                }).el)
+                                .addClass(oValue.view.toLowerCase());
+                            }
                         });
                     }
             
@@ -62,12 +78,12 @@ $(function()
                 },
                 onHide: function(oParam) 
                 {
-                    //oParam.$e.css({opacity: 0.3});
-                    //oParam.$e.hide();    
+                    oParam.$e.css({opacity: 0.3});
+                    oParam.$e.hide();    
                 },
                 onRemove: function(oParam)
                 {
-                    return true;    
+                    return false;    
                 },
                 onStop: function(oParam)
                 {
@@ -79,7 +95,7 @@ $(function()
                 },
                 onClick: function(oParam)
                 {   
-                    Bb.history.navigate('wall/' + oParam.$e.data("id"), {trigger: true});
+                    Bb.history.navigate('wall/' + oParam.$e.data("view").model.get("id"), {trigger: true});
                 }          
             });
         }
@@ -97,8 +113,6 @@ $(function()
             //myApp.getView().getRegion("list").$el.css({top: "0"});
             myApp.getView().getRegion("wall").$el.hide();
             $('html, body').animate({ scrollTop: 0 }, 1200);
-            
-            console.log("home");
         },
         wall: function(sId) {
             var me = this;
