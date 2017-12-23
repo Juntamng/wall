@@ -2,24 +2,12 @@ import _ from "underscore";
 import Bb from "backbone";
 import Mn from "backbone.marionette";
 import "../css/before_i_die_wall.scss";
-import tplWall from "../template/wall.html";
 
 import fill_in_the_blank_wall from "./fill_in_the_blank_wall";
 import before_i_die_item from "./before_i_die_wall_item";
 
 const WallView = fill_in_the_blank_wall.extend({
     className: "wall before_i_die",
-    template: _.template(tplWall),
-    ui: {
-        //"container": ".ecoscroll"
-    },
-    initialize: function(options) {
-    },
-    onRender: function() {
-    },
-    onBeforeDestroy: function() {
-        this.$el.data("plugin_ecoScroll").destroy();
-    },
     onAttach: function() {
         var me = this;
 
@@ -58,15 +46,7 @@ const WallView = fill_in_the_blank_wall.extend({
                         model: oModel
                     }).el);
                 }
-                else {
-                    /*
-                    if (me.options.wallId !== oParam.$e.data("view").model.get("wallId")) {
-
-                        oParam.$e.data("view").update(me.options.wallId, me.options.sentence);
-                    }
-                    oParam.$e.data("view").startTrack();
-                    */
-                }
+                
                 oParam.$e.css({opacity: 1});    
             },
             onHide: function(oParam) 

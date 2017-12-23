@@ -35,7 +35,7 @@ $(function()
             this.$el.ecoScroll(
             {
                 itemWidth: 400,
-                itemHeight: 150,
+                itemHeight: 200,
                 rangeX : [0, 4],
                 axis : "x",
                 snap : false,                     
