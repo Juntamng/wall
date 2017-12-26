@@ -1,8 +1,10 @@
-import mn from "backbone.marionette";
 import _ from "underscore";
-import tpl from '../template/fill_in_the_blank.html';
+import Bb from "backbone";
+import Mn from "backbone.marionette";
 
-var FillInTheBlankView = mn.View.extend({
+import tpl from '../template/i_am.html';
+
+var ItemView = Mn.View.extend({
     template:  _.template(tpl),
     ui: {
         q: ".js_sentence",
@@ -51,4 +53,4 @@ var FillInTheBlankView = mn.View.extend({
     }
 });
 
-export default FillInTheBlankView;
+export default ItemView;

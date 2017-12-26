@@ -5,20 +5,18 @@
     background: url('http://images.designtrends.com/wp-content/uploads/2015/12/22095633/Chalkboard-Texture.jpg');
 
     .eCell {
-        color: #fff;
+        color: rgba(255, 255, 255, 0.75);
 
-        .js_blank_wrapper { 
+        .js_wrapper { 
 
-            .js_blank_border {
-                border: 0px;
+            .js_border {
 
-                .js_blank_underline_wrapper {
+                .js_underline_wrapper {
 
-                    .js_blank_underline {
-                        top: 5px;
+                    .js_underline {
                     }
             
-                    .js_blank_input {
+                    .js_input {
                         font-family: 'Homemade Apple', cursive;
                         color: #9ED7D6;
                     } 
@@ -29,32 +27,26 @@
     }
 }
 
-
 .eCell.beforeidiewall {
-    color: #fff;
+    color: rgba(255, 255, 255, 0.75);
+    background-color: #000;
+    background: url('http://images.designtrends.com/wp-content/uploads/2015/12/22095633/Chalkboard-Texture.jpg');
 
-    .js_blank_wrapper { 
+    .js_wrapper { 
 
-        .js_blank_border {
-            background-color: #000;
-            background: url('http://images.designtrends.com/wp-content/uploads/2015/12/22095633/Chalkboard-Texture.jpg');
-        }
+        .js_border {
+            
+            .js_underline_wrapper {
 
-        .js_blank_border {
-            border: 0px;
-
-            .js_blank_underline_wrapper {
-                .js_blank_underline {
-                    top: 5px;
-                    z-index: 1;
+                .js_underline {
+                    //z-index: 1;
                 }
         
-                .js_blank_input {
+                .js_input {
                     font-family: 'Homemade Apple', cursive;
                     color: #9ED7D6;
                 } 
             }
         }
-        
     }
 }

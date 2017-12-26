@@ -1,20 +1,20 @@
 import _ from "underscore";
 import Bb from "backbone";
 import Mn from "backbone.marionette";
-import "../css/my_name_wall.scss";
+import "../css/i_am_wall.scss";
 
 import fill_in_the_blank_wall from "./fill_in_the_blank_wall";
-import fill_in_the_blank_view from "./my_name_wall_item";
+import fill_in_the_blank_view from "./i_am_wall_item";
 
 const WallView = fill_in_the_blank_wall.extend({
-    className: "wall my_name",
+    className: "wall i_am",
     onAttach: function() {
         var me = this;
 
         this.$el.ecoScroll(
         {
             itemWidth: 400,
-            itemHeight: 220,
+            itemHeight: 200,
             rangeX : [-100, 100],
             rangeY : [-100, 100],
             axis : "yx",
