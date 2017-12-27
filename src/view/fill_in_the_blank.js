@@ -9,6 +9,8 @@ var FillInTheBlankView = mn.View.extend({
         a: ".js_input"
     },
     events: {
+        "focus @ui.a": "onFocus",
+        "blur @ui.a": "onBlur",
         "keyup @ui.a": _.debounce(function(){
             this.save();
         }, 1000)
@@ -19,20 +21,24 @@ var FillInTheBlankView = mn.View.extend({
     onDestroy: function() {
         this.endTrack();
     },
-    update: function(sWallId, sQ) {
-        var me = this;
-
-        me.endTrack();
-        me.model.set({"wallId": sWallId, "q": sQ});
-        this.ui.q.text(sQ);
-        me.startTrack();
+    onFocus: function(e) {
+        this.endTrack();
+    },
+    onBlur: function(e) {
+        this.startTrack();
     },
     save: function() {
-        var me = this;
+        var me = this,
+            ref = firebase.database().ref('walldata/' + me.model.get("wallId") + '/' + me.model.get("id"));
 
-        firebase.database().ref('walldata/' + me.model.get("wallId") + '/' + me.model.get("id")).set({
-            txt: me.ui.a.html()
-        });
+        if (me.ui.a.text().trim().length === 0) {
+            ref.remove();
+        }
+        else {
+            ref.set({
+                txt: me.ui.a.html()
+            });
+        }
     },
     startTrack: function() {
         var me = this;
