@@ -14,7 +14,7 @@ const WallView = fill_in_the_blank_wall.extend({
         this.$el.ecoScroll(
         {
             itemWidth: 500,
-            itemHeight: 100,
+            itemHeight: 200,
             rangeX : [-100, 100],
             rangeY : [-100, 100],
             axis : "yx",

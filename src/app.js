@@ -36,7 +36,7 @@ $(function()
             {
                 itemWidth: 400,
                 itemHeight: 200,
-                rangeX : [0, 4],
+                rangeX : [0, 2],
                 axis : "x",
                 snap : false,                     
                 momentum : true,

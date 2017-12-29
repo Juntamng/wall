@@ -1,13 +1,13 @@
-@import url(//fonts.googleapis.com/css?family=Homemade+Apple);
-
 .iamgratefulwall.wall {
-    background-color: #000;
-    background: url('./../img/iamgrateful_bg.jpg');
+    background: url('./../img/iamgrateful_bg3.jpg');
+    background-size: cover;
 
     .eCell {
-        color: rgba(255, 255, 255, 0.75);
-
+        
         .js_wrapper { 
+            padding: 15px;
+            background: #ffffffcf;
+            color: #5e5b5b;
 
             .js_border {
 
@@ -17,8 +17,7 @@
                     }
             
                     .js_input {
-                        font-family: 'Homemade Apple', cursive;
-                        color: #9ED7D6;
+
                     } 
                 }
             }
@@ -28,11 +27,13 @@
 }
 
 .eCell.iamgratefulwall {
-    color: rgba(255, 255, 255, 0.75);
-    background-color: #000;
-    background: url('http://images.designtrends.com/wp-content/uploads/2015/12/22095633/Chalkboard-Texture.jpg');
+    background: url('./../img/iamgrateful_bg3.jpg');
+    background-size: cover;
 
     .js_wrapper { 
+        padding: 15px;
+        background: #ffffffe7;
+        color: #5e5b5b;
 
         .js_border {
             
@@ -43,8 +44,7 @@
                 }
         
                 .js_input {
-                    font-family: 'Homemade Apple', cursive;
-                    color: #9ED7D6;
+
                 } 
             }
         }
