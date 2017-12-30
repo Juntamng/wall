@@ -250,8 +250,7 @@ SOFTWARE.
             this.iPageXDist = this.iPageXEnd-this.iPageXStart;
             this.iPageYDist = this.iPageYEnd-this.iPageYStart;
 
-            // bClick will be true if distance to 1 pixel diff
-            if (this.iPageXDist > 1 || this.iPageYDist > 1)
+            if (this.iPageXDist != 0 || this.iPageYDist != 0)
                 this.bClick = false;
 
             this.moveByDist(this.iPageXDist, this.iPageYDist);
