@@ -36,7 +36,7 @@ $(function()
             {
                 itemWidth: 400,
                 itemHeight: 200,
-                rangeX : [0, 2],
+                rangeX : [0, 3],
                 axis : "x",
                 snap : false,                     
                 momentum : true,
@@ -95,7 +95,12 @@ $(function()
                 },
                 onClick: function(oParam)
                 {   
+                    window.myApp.router.options.bAnimate = true;
+                    window.myApp.router.options.iDirection = 1;
                     Bb.history.navigate('wall/' + oParam.$e.data("view").model.get("id"), {trigger: true});
+                    $('html, body').stop().animate({ scrollTop: $(document).height() }, 1200, function(){
+                        window.myApp.router.options.bAnimate = false;
+                    });
                 }          
             });
         }
@@ -106,7 +111,29 @@ $(function()
             "": "home",
             "wall/:id": "wall"
         },
+        onRoute: function(oParam) {
+        },
         initialize: function() {
+            var me = this;
+            me.options.bAnimate = false;
+            me.options.iPrevScrollTop = $(window).scrollTop();
+            me.options.iDirection = 0;
+
+            $(window).scroll(function() {
+                if (me.options.bAnimate) {
+                    var iScrollDiff = $(window).scrollTop() - me.options.iPrevScrollTop;
+                    var iCurDirection = ( iScrollDiff > 0 ) ? 1 : -1;
+
+                    if (iCurDirection != me.options.iDirection) {
+                        $('html, body').stop();
+                        me.options.bAnimate = false;
+                    }
+                    
+                    me.options.iDirection = iCurDirection;
+                }
+
+                me.options.iPrevScrollTop = $(window).scrollTop();
+            });
         },
         home: function() {
             //this.mainRegion.show(new MainView({collection: colUser}));
@@ -125,7 +152,12 @@ $(function()
             
             //myApp.getView().getRegion("wall").$el.show();
             //myApp.getView().getRegion("wall").currentView.changeId(id);
-            $('html, body').animate({ scrollTop: $(document).height() }, 1200);
+
+            me.options.bAnimate = true;
+            me.options.iDirection = 1;
+            $('html, body').stop().animate({ scrollTop: $(document).height() }, 1200, function() {
+                me.options.bAnimate = false;
+            });
             //myApp.getView().getRegion("list").currentView.ui.container.data("plugin_ecoScroll").init();
         }
     });
