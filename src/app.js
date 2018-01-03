@@ -36,8 +36,8 @@ $(function()
             {
                 itemWidth: 400,
                 itemHeight: 200,
-                rangeX : [0, 3],
-                axis : "x",
+                //rangeX : [0, 3],
+                //axis : "x",
                 snap : false,                     
                 momentum : true,
                 momentumSpeed : 10,
@@ -49,19 +49,19 @@ $(function()
                 {
                     if (oParam.bNew) {
                         var me = this;
-                        var sId = "c" + oParam.x + "_" + oParam.y;
+                        var sId = (oParam.x + oParam.y * 10 ) % window.myApp.wallCount;
+                        //var sId = "c" + oParam.x + "_" + oParam.y;
 
                         firebase.database().ref('walls/'+ sId)
                         .once('value', function(snapshot) {
                             //oParam.$e.html("<div>" + sValue + "</div>").data("id", sId);
-
                             if (snapshot.val() !== null) {
                                 var oValue = snapshot.val();
                                 var oModel = new Bb.Model({
                                     x: oParam.x,
                                     y: oParam.y,
                                     wallId: sId,
-                                    id: "c" + oParam.x + "_" + oParam.y,
+                                    id: sId,
                                     q: oValue.sentence
                                 });
                                 var oView = new walls[oValue.view + "Item"]({model: oModel});
@@ -117,6 +117,11 @@ $(function()
             me.options.iPrevScrollTop = $(window).scrollTop(); 
             me.options.iDirection = 0; 
  
+            firebase.database().ref("walls")
+            .on('value', function(snapshot) {
+                window.myApp.wallCount = snapshot.numChildren();
+            });
+
             $(window).scroll(function() { 
                 if (me.options.bAnimate) { 
                     var iScrollDiff = $(window).scrollTop() - me.options.iPrevScrollTop; 
@@ -160,9 +165,14 @@ $(function()
     const App = Mn.Application.extend({
         region: "#main",
         onStart: function(app, options) {
-            this.showView(new RootView());
-            this.router = new AppRouter();
-            Bb.history.start({pushState: true});
+            var me = this;
+            firebase.database().ref("walls")
+            .once('value', function(snapshot) {
+                window.myApp.wallCount = snapshot.numChildren();
+                me.showView(new RootView());
+                me.router = new AppRouter();
+                Bb.history.start({pushState: true});
+            });
         }
     });
 
