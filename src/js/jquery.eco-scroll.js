@@ -153,6 +153,8 @@ SOFTWARE.
             this.x2 = 0;
             this.y1 = 0;
             this.y2 = 0;			
+            this.iXStart = 0; // store x at start
+            this.iYStart = 0; // store y at start
 			this.iPageXStart = 0;
             this.iPageXEnd = 0;
             this.iPageYStart = 0;
@@ -221,12 +223,11 @@ SOFTWARE.
 
             var point = this.bTouch ? e.touches[0] : e;
             var oPos = this.$wrapper.position();   
-            this.bClick = true;
             this.oTarget = e.target;
             this.iDistX1=oPos.left;
             this.iDistY1=oPos.top;
-			this.iPageXStart = point.pageX;
-            this.iPageYStart = point.pageY;            
+			this.iXStart = this.iPageXStart = this.iPageXEnd = point.pageX;
+            this.iYStart = this.iPageYStart = this.iPageYEnd = point.pageY;            
             this.bind(this.moveEvent, document);
             this.bind(this.endEvent, document);
             this.iPageXDist = 0;
@@ -250,10 +251,6 @@ SOFTWARE.
             this.iPageXDist = this.iPageXEnd-this.iPageXStart;
             this.iPageYDist = this.iPageYEnd-this.iPageYStart;
 
-            // bClick will be true if distance to 1 pixel diff 
-            if (this.iPageXDist > 1 || this.iPageYDist > 1) 
-                this.bClick = false;
-
             this.moveByDist(this.iPageXDist, this.iPageYDist);
                                     
             this.iPageXStart = point.pageX;
@@ -267,10 +264,12 @@ SOFTWARE.
             this.unbind(this.moveEvent, document);
             this.unbind(this.endEvent, document);                            
             clearInterval(this.ticker);
-
-            if (this.bClick)
+            
+            // fire click if distance < 3 px
+            if ( Math.abs(this.iPageXEnd-this.iXStart) < 3 || Math.abs(this.iPageYEnd-this.iYStart) < 3) {
                 this.settings.onClick( this.getCellParam(this.oTarget) );
-
+            }
+                
             if (this.settings.momentum) 
             {                
                 this.iTimestamp = Date.now();
