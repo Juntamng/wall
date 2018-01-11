@@ -49,9 +49,8 @@ $(function()
                 {
                     if (oParam.bNew) {
                         var me = this;
-                        var sId = (oParam.x + oParam.y * 10 ) % window.myApp.wallCount;
-                        //var sId = "c" + oParam.x + "_" + oParam.y;
-
+                        var sId = Math.abs( (oParam.x + oParam.y * 4 ) % window.myApp.wallCount );
+                        
                         firebase.database().ref('walls/'+ sId)
                         .once('value', function(snapshot) {
                             //oParam.$e.html("<div>" + sValue + "</div>").data("id", sId);
