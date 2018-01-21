@@ -22,6 +22,7 @@ $text: rgba(41, 41, 41, 0.8);
             // background: url( https://dl.dropbox.com/u/146103/cream_dust.png) repeat;
             // -webkit-transform:rotate(-7deg);
             
+            /*
             li span {
                 font-size: 2.2em;
                 display: block;
@@ -29,6 +30,7 @@ $text: rgba(41, 41, 41, 0.8);
                 text-transform:capitalize;
                 font-weight: 600;
             }
+            */
             
             li {
                 list-style: none;
@@ -41,6 +43,14 @@ $text: rgba(41, 41, 41, 0.8);
                     border-radius: 1em 1em 0 0;
                     padding: 0.2em 0;
                     letter-spacing: 0.1em;
+
+                    span {
+                        font-size: 2.2em;
+                        display: block;
+                        letter-spacing: 0.4em;
+                        text-transform:capitalize;
+                        font-weight: 600;
+                    }
                 }
                 
                 &:last-child {
@@ -57,23 +67,32 @@ $text: rgba(41, 41, 41, 0.8);
                         color: rgba(white, 0.6);
                     }
                 }
-              
-                &.js_input {
-                    font-family: 'Waiting for the Sunrise', cursive;
-                    color: $text;
-                    font-size: 3em;
-                    font-size: 2em;
-                    height: 35%;
-                    padding: 0.3em 0;
-                    //-webkit-transform:rotate(-7deg);
-                    
-                    &:first-letter {
-                        font-size: 1.3em;    
-                    }
-                }
+                
+                &.js_name {
+                    padding: 10px 0px;
+                    height: 70px;
 
-                &[contenteditable]:focus {
-                    outline: 0px solid transparent;
+                    .js_input {
+                        font-family: 'Waiting for the Sunrise', cursive;
+                        color: $text;
+                        //font-size: 3em;
+                        font-size: 2em;
+                        height: 55%;
+                        padding: 0.3em 0;
+                        //-webkit-transform:rotate(-7deg);
+                        
+                        &:first-letter {
+                            font-size: 1.3em;    
+                        }
+                        
+                        &:empty {
+                            padding-right: 100px;
+                        }
+
+                        &[contenteditable]:focus {
+                            outline: 0px solid transparent;
+                        }
+                    }
                 }
             }
         }
@@ -104,7 +123,7 @@ $text: rgba(41, 41, 41, 0.8);
             text-transform:capitalize;
             font-weight: 600;
         }
-        
+
         li {
             list-style: none;
             list-style-position:inside;
@@ -133,7 +152,7 @@ $text: rgba(41, 41, 41, 0.8);
                 }
             }
         
-            &.js_input {
+            .js_input {
                 font-family: 'Waiting for the Sunrise', cursive;
                 color: $text;
                 font-size: 3em;
